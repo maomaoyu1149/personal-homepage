@@ -153,9 +153,11 @@ a { text-decoration: none; color: inherit; }
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 28px;
   max-width: 100%;
+  justify-items: center;
 }
+
 
 .port-item {
   background: #fff;
@@ -168,7 +170,10 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
+  max-width: 340px;
 }
+
 
 .port-item:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
 .port-item .thumb {
@@ -200,8 +205,14 @@ a { text-decoration: none; color: inherit; }
 
 
 .port-item:hover .port-images img {
-  transform: scale(1.03);
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
 }
+
 .port-images img {
   width: 100%;
   height: auto;
@@ -228,6 +239,7 @@ a { text-decoration: none; color: inherit; }
 }
 .port-images > img:only-of-type {
   width: 100%;
+  height: 180px;
   object-fit: cover;
 }
 .port-item:hover .port-images img {
@@ -253,12 +265,22 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 0;
 }
 
+@media (min-width: 769px) {
+  .portfolio-grid .port-item:nth-child(4) {
+    grid-column: 1 / 2;
+    justify-self: end;
+  }
+  .portfolio-grid .port-item:nth-child(5) {
+    grid-column: 2 / 3;
+    justify-self: start;
+  }
+}
 @media (max-width: 968px) {
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .comp-grid { grid-template-columns: repeat(2, 1fr); }
   .projects-grid { grid-template-columns: 1fr; }
-  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); justify-items: center; }
   .footer-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 2.5rem; }
 }
@@ -268,7 +290,7 @@ a { text-decoration: none; color: inherit; }
   .nav-toggle { display: block; }
   .hero h1 { font-size: 2rem; }
   .comp-grid { grid-template-columns: 1fr; }
-  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; justify-items: center; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .stat-item .number { font-size: 2rem; }
   .section { padding: 48px 0; }
